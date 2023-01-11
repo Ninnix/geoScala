@@ -1,8 +1,8 @@
 package classes
 
-import classes.Point
+import classes.GeoPoint
 
-class Circle (val radius: Double, val o: Point){
+class GeoCircle (val radius: Double, val o: GeoPoint){
 
   val pi = 3.141592
 

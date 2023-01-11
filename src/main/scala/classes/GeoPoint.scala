@@ -1,7 +1,7 @@
 package classes
 
 
-class Point(var x: Double, var y: Double):
+class GeoPoint(var x: Double, var y: Double):
   
   //costructor 2 point with coords in the origin
   def this() = this(x = 0, y = 0)

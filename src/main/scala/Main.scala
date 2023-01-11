@@ -1,14 +1,14 @@
 import scalafx.application.JFXApp3
-import classes.{Point, SegmentLine, StraightLine, Circle}
+import classes.{GeoPoint, GeoSegmentLine, GeoStraightLine, GeoCircle}
 
-@main def main() = {
+@main def main(): Unit = {
 
-  var pointA = Point(1,1)
+  var pointA = GeoPoint(1,1)
   pointA.printCoords()
-  var pointB = Point(1,1)
+  var pointB = GeoPoint(1,1)
   println(pointA.x)
 
-  var segmentAB = SegmentLine(pointA, pointB)
+  var segmentAB = GeoSegmentLine(pointA, pointB)
   println(segmentAB.a.y)
   println(segmentAB.len())
   segmentAB.midpoint().printCoords()
