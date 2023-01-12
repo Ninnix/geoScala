@@ -8,6 +8,8 @@ import classes.{GeoPoint, GeoSegmentLine, GeoStraightLine, GeoCircle}
 
 object HelloStageDemo extends JFXApp3 {
 
+  val pointA: GeoPoint = GeoPoint(10, 10)
+
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title.value = "GeoScala"
@@ -17,13 +19,7 @@ object HelloStageDemo extends JFXApp3 {
 
       scene = new Scene {
         fill = LightGrey
-        var pointA: GeoPoint = GeoPoint(10, 10)
-        content = new Circle{
-          centerX = pointA.x
-          centerY = pointA.y
-          radius = 3
-          fill = Red
-        }
+        content = pointA.show()
       }
     }
   }
