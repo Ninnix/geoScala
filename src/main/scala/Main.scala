@@ -6,10 +6,10 @@ import classes.{GeoPoint, GeoSegmentLine, GeoStraightLine, GeoCircle}
   var pointA = GeoPoint(1,1)
   pointA.printCoords()
   var pointB = GeoPoint(1,1)
-  println(pointA.x)
+  println(pointA.geoX)
 
   var segmentAB = GeoSegmentLine(pointA, pointB)
-  println(segmentAB.a.y)
+  println(segmentAB.a.geoY)
   println(segmentAB.len())
   segmentAB.midpoint().printCoords()
 }
