@@ -7,9 +7,14 @@ import scalafx.scene.shape.{Circle, Line, Rectangle}
 import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine}
 import scalafx.scene.layout.{HBox, Pane}
 
-object HelloStageDemo extends JFXApp3 {
+object MainStage extends JFXApp3 {
 
   val pointA: GeoPoint = GeoPoint(100, 100)
+  val pointB: GeoPoint = GeoPoint(350, 350)
+  val circleC: GeoCircle = GeoCircle(100, pointA)
+  val segmentAB: GeoSegmentLine = GeoSegmentLine(pointA, pointB)
+  val lineL: GeoStraightLine = GeoStraightLine(0, 250)
+
 
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
@@ -24,6 +29,9 @@ object HelloStageDemo extends JFXApp3 {
         val pane = new Pane
         pane.children += pointA.show()
         pane.children += pointA.showText()
+        pane.children += circleC.show()
+        pane.children += segmentAB.show()
+        pane.children += lineL.show()
         content = pane
       }
     }

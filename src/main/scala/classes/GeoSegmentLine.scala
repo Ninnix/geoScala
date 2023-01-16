@@ -1,6 +1,8 @@
 package classes
 
+import scalafx.scene.paint.Color
 import classes.GeoPoint
+import scalafx.scene.shape.Line
 
 class GeoSegmentLine(val a: GeoPoint, val b: GeoPoint):
 
@@ -13,6 +15,18 @@ class GeoSegmentLine(val a: GeoPoint, val b: GeoPoint):
     val xm: Double = (this.a.geoX + this.b.geoX)/2
     val ym: Double = (this.a.geoY + this.b.geoY)/2
     GeoPoint(xm, ym)
+
+  def show(): Line =
+    val line = new Line {
+      startX = a.geoX
+      startY = a.geoY
+      endX = b.geoX
+      endY = b.geoY
+      stroke = Color.Red
+    }
+    line
+
+
 
 
 

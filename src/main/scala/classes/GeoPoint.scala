@@ -3,7 +3,6 @@ package classes
 import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.Circle
 import scalafx.scene.text.Text
-
 import scalafx.scene.effect.DropShadow
 import scalafx.scene.paint.{LinearGradient, Stops}
 
