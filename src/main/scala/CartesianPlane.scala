@@ -5,9 +5,6 @@ import scalafx.scene.layout.*
 import scalafx.scene.paint.Color
 
 object CartesianPlane {
-
-  val pane = new Pane
-
   val xAxis = new Line {
     startX = 0
     startY = 400
@@ -15,7 +12,6 @@ object CartesianPlane {
     endY = 400
     strokeWidth = 2
   }
-  pane.children += xAxis
 
   val yAxis = new Line {
     startX = 400
@@ -24,34 +20,31 @@ object CartesianPlane {
     endY = 800
     strokeWidth = 2
   }
-  pane.children += yAxis
 
-  for (i <- 0 to 800 by 50) {
-    val vLine = new Line {
-      startX = i
-      startY = 0
-      endX = i
-      endY = 800
-      stroke = Color.LightGray
-      strokeWidth = 1
+  val grid = new Group {
+    for (i <- 0 to 800 by 50) {
+      children.add(new Line {
+        startX = i
+        startY = 0
+        endX = i
+        endY = 800
+        strokeWidth = 0.5
+        stroke = if (i == 0) Color.Black else Color.LightGray
+      })
+      children.add(new Line {
+        startX = 0
+        startY = i
+        endX = 800
+        endY = i
+        strokeWidth = 0.5
+        stroke = if (i == 0) Color.Black else Color.LightGray
+      })
     }
-    pane.children += vLine
   }
 
-  for (i <- 0 to 800 by 50) {
-    val hLine = new Line {
-      startX = 0
-      startY = i
-      endX = 800
-      endY = i
-      stroke = Color.LightGray
-      strokeWidth = 1
-    }
-    pane.children += hLine
+  val plane = new Pane {
+    children ++= Seq(xAxis, yAxis, grid)
+    prefWidth = 800
+    prefHeight = 800
   }
-
-  val stackPane = new StackPane()
-  stackPane.alignment = Pos.Center
-  stackPane.children += pane
-
 }
