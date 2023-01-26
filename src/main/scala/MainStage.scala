@@ -6,6 +6,7 @@ import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.{Circle, Line, Rectangle}
 import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine}
 import scalafx.scene.layout.{HBox, Pane}
+import CartesianPlane.stackPane
 
 object MainStage extends JFXApp3 {
 
@@ -19,14 +20,14 @@ object MainStage extends JFXApp3 {
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title.value = "GeoScala"
-      width = 600
-      height = 450
+      width = 800
+      height = 800
 
 
       scene = new Scene {
-        fill = LightGrey // Color.rgb(38, 38, 38)
         //content = pointA.showText()
         val pane = new Pane
+        pane.children += stackPane
         pane.children += pointA.show()
         pane.children += pointA.showText()
         pane.children += circleC.show()
