@@ -4,13 +4,15 @@ import scalafx.geometry.{Insets, Point2D}
 import scalafx.scene.Scene
 import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.{Circle, Line, Rectangle}
-import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine}
 import scalafx.scene.layout.{HBox, Pane}
+import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine}
 import CartesianPlane.plane
+import GeoConfig.stageSize
+
 
 object MainStage extends JFXApp3 {
 
-  val pointA: GeoPoint = GeoPoint(100, 100)
+  val pointA: GeoPoint = GeoPoint(0, 0)
   val pointB: GeoPoint = GeoPoint(350, 350)
   val circleC: GeoCircle = GeoCircle(100, pointA)
   val segmentAB: GeoSegmentLine = GeoSegmentLine(pointA, pointB)
@@ -20,8 +22,8 @@ object MainStage extends JFXApp3 {
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title.value = "GeoScala"
-      width = 800
-      height = 800
+      width = stageSize
+      height = stageSize
 
 
       scene = new Scene {
@@ -30,6 +32,8 @@ object MainStage extends JFXApp3 {
         pane.children += plane
         pane.children += pointA.show()
         pane.children += pointA.showText()
+        pane.children += pointB.show()
+        pane.children += pointB.showText()
         pane.children += circleC.show()
         pane.children += segmentAB.show()
         pane.children += lineL.show()

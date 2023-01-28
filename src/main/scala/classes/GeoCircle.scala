@@ -16,8 +16,8 @@ class GeoCircle (val geoRadius: Double, val o: GeoPoint):
 
   def show(): Circle =
     val circle = new Circle {
-      centerX = o.geoX
-      centerY = o.geoY
+      centerX = o.cartesianY
+      centerY = o.cartesianY
       radius = geoRadius
       fill = Color.Transparent
       stroke = Color.Red

@@ -3,6 +3,7 @@ package classes
 import scalafx.scene.paint.Color
 import classes.GeoPoint
 import scalafx.scene.shape.Line
+import GeoConfig.stageSize
 
 class GeoStraightLine(val m: Double, val q: Double):
 
@@ -12,8 +13,8 @@ class GeoStraightLine(val m: Double, val q: Double):
 
   def show(): Line =
 
-    val xMin = -100.0
-    val xMax = 100.0
+    val xMin = 0
+    val xMax = stageSize
 
     val sX = xMin
     val sY = m * xMin + q

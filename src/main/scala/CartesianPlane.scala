@@ -3,38 +3,39 @@ import scalafx.scene.Group
 import scalafx.scene.shape.*
 import scalafx.scene.layout.*
 import scalafx.scene.paint.Color
+import GeoConfig.stageSize
 
 object CartesianPlane {
   val xAxis = new Line {
     startX = 0
-    startY = 400
-    endX = 800
-    endY = 400
+    startY = stageSize/2
+    endX = stageSize
+    endY = stageSize/2
     strokeWidth = 2
   }
 
   val yAxis = new Line {
-    startX = 400
+    startX = stageSize/2
     startY = 0
-    endX = 400
-    endY = 800
+    endX = stageSize/2
+    endY = stageSize
     strokeWidth = 2
   }
 
   val grid = new Group {
-    for (i <- 0 to 800 by 50) {
+    for (i <- 0 to stageSize by 50) {
       children.add(new Line {
         startX = i
         startY = 0
         endX = i
-        endY = 800
+        endY = stageSize
         strokeWidth = 0.5
         stroke = if (i == 0) Color.Black else Color.LightGray
       })
       children.add(new Line {
         startX = 0
         startY = i
-        endX = 800
+        endX = stageSize
         endY = i
         strokeWidth = 0.5
         stroke = if (i == 0) Color.Black else Color.LightGray
@@ -44,7 +45,7 @@ object CartesianPlane {
 
   val plane = new Pane {
     children ++= Seq(xAxis, yAxis, grid)
-    prefWidth = 800
-    prefHeight = 800
+    prefWidth = stageSize
+    prefHeight = stageSize
   }
 }
