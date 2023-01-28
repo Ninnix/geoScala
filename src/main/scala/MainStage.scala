@@ -30,10 +30,8 @@ object MainStage extends JFXApp3 {
         //content = pointA.showText()
         val pane = new Pane
         pane.children += plane
-        pane.children += pointA.show()
-        pane.children += pointA.showText()
-        pane.children += pointB.show()
-        pane.children += pointB.showText()
+        pane.children += pointA.show("A")
+        pane.children += pointB.show("B")
         pane.children += circleC.show()
         pane.children += segmentAB.show()
         pane.children += lineL.show()

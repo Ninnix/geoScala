@@ -6,6 +6,7 @@ import scalafx.scene.text.Text
 import scalafx.scene.effect.DropShadow
 import scalafx.scene.paint.{LinearGradient, Stops}
 import GeoConfig.stageSize
+import scalafx.scene.layout.Pane
 
 class GeoPoint(var geoX: Double, var geoY: Double):
   
@@ -29,18 +30,25 @@ class GeoPoint(var geoX: Double, var geoY: Double):
     geoX = geoX + dx
     geoY = geoY + dy
 
-  def show(): Circle =
+  def show(varName: String): Pane =
     val circle = new Circle {
       centerX = cartesianX
       centerY = cartesianY
       radius = 3
       fill = Red
     }
-    circle
+    var varText = this.showText(varName)
 
-  def showText(): Text =
+    val panePoint = new Pane {
+      children ++= Seq(circle, varText)
+      prefWidth = stageSize
+      prefHeight = stageSize
+    }
+    panePoint
+
+  private def showText(varName: String): Text =
     val label = new Text {
-      text = "FX"
+      text = varName
       x = cartesianX + 10
       y = cartesianY + 5
       style = "-fx-font: italic bold 10pt sans-serif"
