@@ -1,9 +1,11 @@
-import CartesianPlane.plane
+package ui
+
+import GeoConfig.{menuBarSize, stageSize}
+import classes.GeoPoint
 import scalafx.geometry.Insets
 import scalafx.scene.control.Button
 import scalafx.scene.layout.VBox
-import GeoConfig.{menuBarSize, stageSize}
-import classes.GeoPoint
+import ui.CartesianPlane.plane
 
 object MenuBar {
   val buttonPane = new VBox

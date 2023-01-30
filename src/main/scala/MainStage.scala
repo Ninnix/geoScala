@@ -6,8 +6,8 @@ import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.{Circle, Line, Rectangle}
 import scalafx.scene.layout.{HBox, Pane}
 import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine}
-import CartesianPlane.plane
-import MenuBar.buttonPane
+import ui.CartesianPlane.plane
+import ui.MenuBar.buttonPane
 import GeoConfig.{stageSize, menuBarSize}
 
 

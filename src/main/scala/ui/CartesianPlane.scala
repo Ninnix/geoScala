@@ -1,9 +1,11 @@
+package ui
+
+import GeoConfig.stageSize
 import scalafx.geometry.Pos
 import scalafx.scene.Group
-import scalafx.scene.shape.*
 import scalafx.scene.layout.*
 import scalafx.scene.paint.Color
-import GeoConfig.stageSize
+import scalafx.scene.shape.*
 
 object CartesianPlane {
   val xAxis = new Line {
