@@ -7,34 +7,23 @@ import scalafx.scene.shape.{Circle, Line, Rectangle}
 import scalafx.scene.layout.{HBox, Pane}
 import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine}
 import CartesianPlane.plane
-import GeoConfig.stageSize
+import MenuBar.buttonPane
+import GeoConfig.{stageSize, menuBarSize}
 
 
 object MainStage extends JFXApp3 {
 
-  val pointA: GeoPoint = GeoPoint(0, 0)
-  val pointB: GeoPoint = GeoPoint(350, 350)
-  val circleC: GeoCircle = GeoCircle(100, pointA)
-  val segmentAB: GeoSegmentLine = GeoSegmentLine(pointA, pointB)
-  val lineL: GeoStraightLine = GeoStraightLine(0, 250)
-
-
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title.value = "GeoScala"
-      width = stageSize
-      height = stageSize
+      width = stageSize + menuBarSize + 20
+      height = stageSize + 40
 
 
       scene = new Scene {
         //content = pointA.showText()
-        val pane = new Pane
-        pane.children += plane
-        pane.children += pointA.show("A")
-        pane.children += pointB.show("B")
-        pane.children += circleC.show()
-        pane.children += segmentAB.show()
-        pane.children += lineL.show()
+        val pane = new HBox
+        pane.children = List(buttonPane, plane)
         content = pane
       }
     }

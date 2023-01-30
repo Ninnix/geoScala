@@ -13,14 +13,12 @@ class GeoPoint(var geoX: Double, var geoY: Double):
   //costructor 2 point with coords in the origin
   def this() = this(geoX = 0, geoY = 0)
 
-  val (startX, startY) = scaleToCenter(geoX, geoY, stageSize, stageSize)
-  val cartesianX = startX
-  val cartesianY = startY
+  val (cartesianX, cartesianY) = scaleCoordinates(geoX, geoY, stageSize)
 
-  private def scaleToCenter(x: Double, y: Double, width: Double, height: Double): (Double, Double) = {
-    val centerX = width / 2
-    val centerY = height / 2
-    (x + centerX, centerY - y)
+  def scaleCoordinates(x: Double, y: Double, stageSize: Double): (Double, Double) = {
+    val xScaled = (x / (stageSize / 4)) * (stageSize / 4) - (stageSize / 2)
+    val yScaled = (stageSize / 2) - (y / (stageSize / 4)) * (stageSize / 4)
+    (xScaled, yScaled)
   }
 
   def printCoords(): Unit =
@@ -32,8 +30,8 @@ class GeoPoint(var geoX: Double, var geoY: Double):
 
   def show(varName: String): Pane =
     val circle = new Circle {
-      centerX = cartesianX
-      centerY = cartesianY
+      centerX = geoX
+      centerY = geoY
       radius = 3
       fill = Red
     }
@@ -49,8 +47,8 @@ class GeoPoint(var geoX: Double, var geoY: Double):
   private def showText(varName: String): Text =
     val label = new Text {
       text = varName
-      x = cartesianX + 10
-      y = cartesianY + 5
+      x = geoX + 10
+      y = geoY + 5
       style = "-fx-font: italic bold 10pt sans-serif"
       fill = new LinearGradient(
         endX = 10,
