@@ -18,7 +18,8 @@ object MenuBar {
   drawPointButton.onAction = _ => {
     plane.onMouseClicked = (event) => {
       val pointA: GeoPoint = GeoPoint(event.getX, event.getY)
-      plane.children += pointA.show("A")
+      plane.children += pointA.show("P")
+      print(pointA.cartesianX, pointA.cartesianY)
     }
   }
 

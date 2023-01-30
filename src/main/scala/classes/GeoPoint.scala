@@ -9,9 +9,6 @@ import GeoConfig.stageSize
 import scalafx.scene.layout.Pane
 
 class GeoPoint(var geoX: Double, var geoY: Double):
-  
-  //costructor 2 point with coords in the origin
-  def this() = this(geoX = 0, geoY = 0)
 
   val (cartesianX, cartesianY) = scaleCoordinates(geoX, geoY, stageSize)
 
@@ -20,13 +17,6 @@ class GeoPoint(var geoX: Double, var geoY: Double):
     val yScaled = (stageSize / 2) - (y / (stageSize / 4)) * (stageSize / 4)
     (xScaled, yScaled)
   }
-
-  def printCoords(): Unit =
-    println("(" + geoX.toString + ", " + geoY.toString + ")")
-
-  def move(dx: Double, dy: Double): Unit =
-    geoX = geoX + dx
-    geoY = geoY + dy
 
   def show(varName: String): Pane =
     val circle = new Circle {
