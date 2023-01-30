@@ -8,7 +8,8 @@ import scalafx.scene.layout.{HBox, Pane}
 import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine}
 import ui.CartesianPlane.plane
 import ui.MenuBar.buttonPane
-import GeoConfig.{stageSize, menuBarSize}
+import GeoConfig.{menuBarSize, stageSize}
+import scalafx.scene.image.Image
 
 
 object MainStage extends JFXApp3 {
@@ -16,15 +17,16 @@ object MainStage extends JFXApp3 {
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title.value = "GeoScala"
+      icons += new Image("resources/GeoScalaLogo.png")
       width = stageSize + menuBarSize + 20
       height = stageSize + 40
 
 
       scene = new Scene {
         //content = pointA.showText()
-        val pane = new HBox
-        pane.children = List(buttonPane, plane)
-        content = pane
+        val mainPane = new HBox
+        mainPane.children = List(buttonPane, plane)
+        content = mainPane
       }
     }
   }

@@ -11,6 +11,7 @@ import scalafx.scene.layout.Pane
 class GeoPoint(var geoX: Double, var geoY: Double):
 
   val (cartesianX, cartesianY) = scaleCoordinates(geoX, geoY, stageSize)
+  var id = ""
 
   def scaleCoordinates(x: Double, y: Double, stageSize: Double): (Double, Double) = {
     val xScaled = (x / (stageSize / 4)) * (stageSize / 4) - (stageSize / 2)
@@ -25,10 +26,11 @@ class GeoPoint(var geoX: Double, var geoY: Double):
       radius = 3
       fill = Red
     }
-    var varText = this.showText(varName)
+    id = varName
+    var idText = this.showText(id)
 
     val panePoint = new Pane {
-      children ++= Seq(circle, varText)
+      children ++= Seq(circle, idText)
       prefWidth = stageSize
       prefHeight = stageSize
     }

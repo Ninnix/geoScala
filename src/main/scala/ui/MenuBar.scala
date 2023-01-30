@@ -5,7 +5,7 @@ import classes.GeoPoint
 import scalafx.geometry.Insets
 import scalafx.scene.control.Button
 import scalafx.scene.layout.VBox
-import ui.CartesianPlane.plane
+import ui.CartesianPlane.{grid, plane, xAxis, yAxis}
 
 object MenuBar {
   val buttonPane = new VBox
@@ -15,11 +15,14 @@ object MenuBar {
   buttonPane.spacing = 10
 
   val drawPointButton = new Button("◾")
+  private var pCount: Int = 0
   drawPointButton.onAction = _ => {
     plane.onMouseClicked = (event) => {
-      val pointA: GeoPoint = GeoPoint(event.getX, event.getY)
-      plane.children += pointA.show("P")
-      print(pointA.cartesianX, pointA.cartesianY)
+      val objPoint: GeoPoint = GeoPoint(event.getX, event.getY)
+      plane.children += objPoint.show("P" + pCount)
+      print(objPoint.id, objPoint.cartesianX, objPoint.cartesianY)
+      println()
+      pCount += 1
     }
   }
 
@@ -38,6 +41,13 @@ object MenuBar {
     // Add code to draw circle on the cartesian plane
   }
 
-  buttonPane.children = List(drawPointButton, drawSegmentLineButton, drawLineButton, drawCircleButton)
+  val cleanAllPlate = new Button("\uD83D\uDDD1")
+  cleanAllPlate.onAction = _ => {
+    plane.children.clear()
+    plane.children ++= Seq(xAxis, yAxis, grid)
+    pCount = 0
+  }
+
+  buttonPane.children = List(drawPointButton, drawSegmentLineButton, drawLineButton, drawCircleButton, cleanAllPlate)
 
 }
