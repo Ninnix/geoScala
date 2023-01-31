@@ -4,7 +4,7 @@ import scalafx.scene.shape.Circle
 import classes.GeoPoint
 import scalafx.scene.paint.Color
 
-class GeoCircle (val geoRadius: Double, val o: GeoPoint):
+class GeoCircle (val geoRadius: Double, val geoCenter: GeoPoint):
   val pi = 3.141592
 
   def area(): Double = geoRadius*geoRadius*pi
@@ -13,8 +13,8 @@ class GeoCircle (val geoRadius: Double, val o: GeoPoint):
 
   def show(): Circle =
     val circle = new Circle {
-      centerX = o.geoX
-      centerY = o.geoY
+      centerX = geoCenter.geoX
+      centerY = geoCenter.geoY
       radius = geoRadius
       fill = Color.Transparent
       stroke = Color.Black
