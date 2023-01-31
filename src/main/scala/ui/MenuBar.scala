@@ -1,18 +1,18 @@
 package ui
 
-import GeoConfig.{menuBarSize, stageSize}
-import classes.{GeoCircle, GeoPoint, GeoSegmentLine, GeoStraightLine, GeoTriangle}
 import scalafx.geometry.Insets
 import scalafx.scene.Cursor
 import scalafx.scene.control.{Button, Dialog, TextInputDialog}
 import scalafx.scene.layout.{Pane, VBox}
 import scalafx.scene.shape.{Circle, Line}
-import ui.CartesianPlane.{grid, plane, xAxis, yAxis}
 import scalafx.scene.control.TextInputDialog
 import scalafx.scene.shape.Line
-import scalafx.Includes._
+import scalafx.Includes.*
 
 import scala.util.control.Breaks.break
+import ui.CartesianPlane.{grid, plane, xAxis, yAxis}
+import classes.{GeoCircle, GeoEllipse, GeoPoint, GeoSegmentLine, GeoStraightLine, GeoTriangle}
+import GeoConfig.{menuBarSize, stageSize}
 
 object MenuBar {
   val buttonPane = new VBox
@@ -23,7 +23,7 @@ object MenuBar {
 
   var points: List[GeoPoint] = List()
 
-  val selectElementButton = new Button("↘")
+  val selectElementButton = new Button(" ↘ ")
   selectElementButton.onAction = _ => {
     plane.onMouseClicked = (event) => {
       val selectedX = event.getX
@@ -71,7 +71,6 @@ object MenuBar {
     }
   }
 
-
   val drawLineButton = new Button("↔")
   drawLineButton.onAction = _ => {
     val inputDialog = new TextInputDialog("0,0")
@@ -89,8 +88,7 @@ object MenuBar {
     }
   }
 
-
-  val drawCircleButton = new Button("\uD83D\uDD34")
+  val drawCircleButton = new Button("○")
   drawCircleButton.onAction = _ => {
     plane.onMouseClicked = (event) => {
       val center = GeoPoint(event.getX, event.getY)
@@ -122,6 +120,37 @@ object MenuBar {
     }
   }
 
+  val drawEllipseButton = new Button("⬭")
+  drawEllipseButton.onAction = _ => {
+    plane.onMouseClicked = (event) => {
+      val center = GeoPoint(event.getX, event.getY)
+      val inputDialogRx = new TextInputDialog("50")
+      inputDialogRx.title = "Input x radius"
+      inputDialogRx.headerText = "Enter the x radius of the ellipse:"
+      inputDialogRx.contentText = "X Radius:"
+
+      val resultRx = inputDialogRx.showAndWait()
+      resultRx match {
+        case Some(rxString) =>
+          val rx = rxString.toDouble
+          val inputDialogRy = new TextInputDialog("30")
+          inputDialogRy.title = "Input y radius"
+          inputDialogRy.headerText = "Enter the y radius of the ellipse:"
+          inputDialogRy.contentText = "Y Radius:"
+
+          val resultRy = inputDialogRy.showAndWait()
+          resultRy match {
+            case Some(ryString) =>
+              val ry = ryString.toDouble
+              val ellipse = new GeoEllipse(center, rx, ry)
+              plane.children += ellipse.show()
+            case None => println("Input dialog was cancelled.")
+          }
+        case None => println("Input dialog was cancelled.")
+      }
+    }
+  }
+
   val cleanAllPlate = new Button("\uD83D\uDDD1")
   cleanAllPlate.onAction = _ => {
     plane.children.clear()
@@ -130,6 +159,7 @@ object MenuBar {
     pCount = 0
   }
 
-  buttonPane.children = List(selectElementButton, drawPointButton, drawSegmentLineButton, drawLineButton, drawCircleButton, drawTriangleButton, cleanAllPlate)
+  buttonPane.children = List(selectElementButton, drawPointButton, drawSegmentLineButton,
+    drawLineButton, drawCircleButton, drawTriangleButton, drawEllipseButton, cleanAllPlate)
 
 }
