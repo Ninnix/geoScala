@@ -18,11 +18,11 @@ class GeoSegmentLine(val a: GeoPoint, val b: GeoPoint):
 
   def show(): Line =
     val line = new Line {
-      startX = a.cartesianX
-      startY = a.cartesianY
-      endX = b.cartesianX
-      endY = b.cartesianY
-      stroke = Color.Red
+      startX = a.geoX
+      startY = a.geoY
+      endX = b.geoX
+      endY = b.geoY
+      stroke = Color.Black
     }
     line
 
