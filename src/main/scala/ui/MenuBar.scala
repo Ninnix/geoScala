@@ -8,7 +8,6 @@ import scalafx.scene.shape.{Circle, Line}
 import scalafx.scene.control.TextInputDialog
 import scalafx.scene.shape.Line
 import scalafx.Includes.*
-
 import scala.util.control.Breaks.break
 import ui.CartesianPlane.{grid, plane, xAxis, yAxis}
 import classes.{GeoCircle, GeoEllipse, GeoPoint, GeoSegmentLine, GeoStraightLine, GeoTriangle}
@@ -22,30 +21,6 @@ object MenuBar {
   buttonPane.spacing = 10
 
   var points: List[GeoPoint] = List()
-
-  val selectElementButton = new Button(" ↘ ")
-  selectElementButton.onAction = _ => {
-    plane.onMouseClicked = (event) => {
-      val selectedX = event.getX
-      val selectedY = event.getY
-      var selectedElement: Option[Any] = None
-      val range = 100 // change this value to increase or decrease the hitbox size
-
-      // Check if a GeoPoint is selected
-      for (point <- points) {
-        if (Math.abs(point.cartesianX - selectedX) <= range && Math.abs(point.cartesianY - selectedY) <= range) {
-          selectedElement = Some(point)
-          break
-        }
-      }
-
-      // Print information about the selected element
-      selectedElement match {
-        case Some(point: GeoPoint) => println(s"Selected GeoPoint: id = ${point.id}, cartesianX = ${point.cartesianX}, cartesianY = ${point.cartesianY}")
-        case None => println("No element selected.")
-      }
-    }
-  }
 
   val drawPointButton = new Button("◾")
   private var pCount: Int = 0
@@ -159,7 +134,7 @@ object MenuBar {
     pCount = 0
   }
 
-  buttonPane.children = List(selectElementButton, drawPointButton, drawSegmentLineButton,
+  buttonPane.children = List(drawPointButton, drawSegmentLineButton,
     drawLineButton, drawCircleButton, drawTriangleButton, drawEllipseButton, cleanAllPlate)
 
 }

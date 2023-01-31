@@ -13,6 +13,10 @@ class GeoPoint(var geoX: Double, var geoY: Double):
   val (cartesianX, cartesianY) = scaleCoordinates(geoX, geoY, stageSize)
   var id = ""
 
+  def print(): Unit =
+    println( id + ":" + "(" + cartesianX + "," + cartesianY + ")")
+
+
   def scaleCoordinates(x: Double, y: Double, stageSize: Double): (Double, Double) = {
     val xScaled = (x / (stageSize / 4)) * (stageSize / 4) - (stageSize / 2)
     val yScaled = (stageSize / 2) - (y / (stageSize / 4)) * (stageSize / 4)
