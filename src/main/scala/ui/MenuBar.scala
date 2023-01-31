@@ -21,6 +21,11 @@ object MenuBar {
   buttonPane.spacing = 10
 
   var points: List[GeoPoint] = List()
+  var segments: List[GeoSegmentLine] = List()
+  var lines: List[GeoStraightLine] = List()
+  var circles: List[GeoCircle] = List()
+  var triangles: List[GeoTriangle] = List()
+  var ellipses: List[GeoEllipse] = List()
 
   val drawPointButton = new Button("◾")
   private var pCount: Int = 0
@@ -28,10 +33,9 @@ object MenuBar {
     plane.onMouseClicked = (event) => {
       val objPoint: GeoPoint = GeoPoint(event.getX, event.getY)
       plane.children += objPoint.show("P" + pCount)
-      print(objPoint.id, objPoint.cartesianX, objPoint.cartesianY)
-      println()
-      pCount += 1
+      objPoint.print()
       points = points :+ objPoint
+      pCount += 1
     }
   }
 
@@ -40,9 +44,11 @@ object MenuBar {
     if (points.length >= 2) {
       val p1 = points(0)
       val p2 = points(1)
-      val line = new GeoSegmentLine(p1, p2)
-      plane.children += line.show()
+      val segment = new GeoSegmentLine(p1, p2)
+      plane.children += segment.show()
       points = List()
+      segments = segments :+ segment
+      println(segment.a.id + segment.b.id + "=" + segment.a.print() + segment.b.print() )
     }
   }
 
@@ -59,6 +65,7 @@ object MenuBar {
         val Array(m, q) = paramsString.split(",").map(_.toDouble)
         val line = new GeoStraightLine(m, q)
         plane.children += line.show()
+        lines = lines :+ line
       case None => println("Input dialog was cancelled.")
     }
   }
@@ -131,6 +138,8 @@ object MenuBar {
     plane.children.clear()
     plane.children ++= Seq(xAxis, yAxis, grid) // restore the cartesian plate
     points = List.empty[GeoPoint]
+    segments = List.empty[GeoSegmentLine]
+    lines = List.empty[GeoStraightLine]
     pCount = 0
   }
 

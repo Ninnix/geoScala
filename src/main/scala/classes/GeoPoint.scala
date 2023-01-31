@@ -10,12 +10,10 @@ import scalafx.scene.layout.Pane
 
 class GeoPoint(var geoX: Double, var geoY: Double):
 
-  val (cartesianX, cartesianY) = scaleCoordinates(geoX, geoY, stageSize)
   var id = ""
+  val (cartesianX, cartesianY) = scaleCoordinates(geoX, geoY, stageSize)
 
-  def print(): Unit =
-    println( id + ":" + "(" + cartesianX + "," + cartesianY + ")")
-
+  def print(): Unit = println( id + ":" + "(" + cartesianX + "," + cartesianY + ")")
 
   def scaleCoordinates(x: Double, y: Double, stageSize: Double): (Double, Double) = {
     val xScaled = (x / (stageSize / 4)) * (stageSize / 4) - (stageSize / 2)
