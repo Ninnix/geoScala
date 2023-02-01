@@ -48,7 +48,7 @@ object MenuBar {
       plane.children += segment.show()
       points = List()
       segments = segments :+ segment
-      println(segment.a.id + segment.b.id + "=" + segment.a.print() + segment.b.print() )
+      println(segment.a.id + segment.b.id + " = " + segment.a.getString() + "; " + segment.b.getString() )
     }
   }
 
@@ -66,6 +66,7 @@ object MenuBar {
         val line = new GeoStraightLine(m, q)
         plane.children += line.show()
         lines = lines :+ line
+        println("y=" + line.m + "x+" + line.q)
       case None => println("Input dialog was cancelled.")
     }
   }
@@ -137,13 +138,20 @@ object MenuBar {
   cleanAllPlate.onAction = _ => {
     plane.children.clear()
     plane.children ++= Seq(xAxis, yAxis, grid) // restore the cartesian plate
-    points = List.empty[GeoPoint]
-    segments = List.empty[GeoSegmentLine]
-    lines = List.empty[GeoStraightLine]
+    emptyLists()
     pCount = 0
   }
 
   buttonPane.children = List(drawPointButton, drawSegmentLineButton,
     drawLineButton, drawCircleButton, drawTriangleButton, drawEllipseButton, cleanAllPlate)
+
+  private def emptyLists(): Unit = {
+    points = List.empty[GeoPoint]
+    segments = List.empty[GeoSegmentLine]
+    lines = List.empty[GeoStraightLine]
+    circles = List.empty[GeoCircle]
+    triangles = List.empty[GeoTriangle]
+    ellipses = List.empty[GeoEllipse]
+  }
 
 }
