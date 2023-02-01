@@ -10,6 +10,8 @@ class GeoStraightLine(val m: Double, val q: Double):
   //costructor 2 -> implicit form (ax+by+c=0)
   def this(a: Double, b: Double, c: Double) = this(m = -a/b, q = -c/b)
 
+  def print(): Unit = println("y=" + m + "x+" + q)
+
   def show(): Line =
     val xMin = -stageSize / 2
     val xMax = stageSize / 2

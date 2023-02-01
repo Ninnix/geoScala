@@ -6,6 +6,8 @@ import scalafx.scene.shape.Line
 
 class GeoSegmentLine(val a: GeoPoint, val b: GeoPoint):
 
+  def print(): Unit = println(a.id + b.id + " = " + a.getString() + "; " + b.getString())
+
   def len(): Double =
     val x0: Double = Math.abs(a.geoX - b.geoX)
     val y0: Double = Math.abs(a.geoY - b.geoY)

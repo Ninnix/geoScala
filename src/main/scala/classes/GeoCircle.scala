@@ -6,6 +6,8 @@ import scalafx.scene.paint.Color
 
 class GeoCircle (val geoRadius: Double, val geoCenter: GeoPoint):
   val pi = 3.141592
+  
+  def print(): Unit = println("radius=" + geoRadius + " center=" + geoCenter.getString())
 
   def area(): Double = geoRadius*geoRadius*pi
 

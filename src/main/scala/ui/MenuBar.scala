@@ -48,7 +48,7 @@ object MenuBar {
       plane.children += segment.show()
       points = List()
       segments = segments :+ segment
-      println(segment.a.id + segment.b.id + " = " + segment.a.getString() + "; " + segment.b.getString() )
+      segment.print()
     }
   }
 
@@ -66,7 +66,7 @@ object MenuBar {
         val line = new GeoStraightLine(m, q)
         plane.children += line.show()
         lines = lines :+ line
-        println("y=" + line.m + "x+" + line.q)
+        line.print()
       case None => println("Input dialog was cancelled.")
     }
   }
@@ -86,6 +86,8 @@ object MenuBar {
           val geoRadius = radiusString.toDouble
           val circle = new GeoCircle(geoRadius, center)
           plane.children += circle.show()
+          circles = circles :+ circle
+          circle.print()
         case None => println("Input dialog was cancelled.")
       }
     }
@@ -99,6 +101,8 @@ object MenuBar {
       val p3 = points(2)
       val triangle = new GeoTriangle(p1, p2, p3)
       plane.children += triangle.show()
+      triangles = triangles :+ triangle
+      triangle.print()
       points = List()
     }
   }
@@ -127,6 +131,8 @@ object MenuBar {
               val ry = ryString.toDouble
               val ellipse = new GeoEllipse(center, rx, ry)
               plane.children += ellipse.show()
+              ellipses = ellipses :+ ellipse
+              ellipse.print()
             case None => println("Input dialog was cancelled.")
           }
         case None => println("Input dialog was cancelled.")
