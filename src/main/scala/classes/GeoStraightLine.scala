@@ -11,9 +11,8 @@ class GeoStraightLine(val m: Double, val q: Double):
   def this(a: Double, b: Double, c: Double) = this(m = -a/b, q = -c/b)
 
   def show(): Line =
-
-    val xMin = 0
-    val xMax = stageSize
+    val xMin = -stageSize / 2
+    val xMax = stageSize / 2
 
     val sX = xMin
     val sY = m * xMin + q
@@ -21,10 +20,10 @@ class GeoStraightLine(val m: Double, val q: Double):
     val eY = m * xMax + q
 
     val line = new Line {
-      startX = sX
-      startY = sY
-      endX = eX
-      endY = eY
+      startX = sX + stageSize / 2
+      startY = -(sY - stageSize / 2)
+      endX = eX + stageSize / 2
+      endY = -(eY - stageSize / 2)
       stroke = Color.Blue
     }
     line
