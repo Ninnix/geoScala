@@ -216,6 +216,7 @@ object MenuBar {
     circles = List.empty[GeoCircle]
     triangles = List.empty[GeoTriangle]
     ellipses = List.empty[GeoEllipse]
+    selectedPoints = List.empty[GeoPoint]
   }
 
 }
