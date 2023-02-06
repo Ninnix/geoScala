@@ -27,6 +27,40 @@ object MenuBar {
   var triangles: List[GeoTriangle] = List()
   var ellipses: List[GeoEllipse] = List()
 
+
+  val printInfoButton = new Button("\uD83D\uDDB6")
+  printInfoButton.onAction = _ => {
+    println("--------------------------------")
+    println("Points:")
+    for (point <- points) {
+      point.print()
+    }
+    println("--------------------------------")
+    println("Segments:")
+    for (segment <- segments) {
+      segment.print()
+    }
+    println("--------------------------------")
+    println("Lines:")
+    for (line <- lines) {
+      line.print()
+    }
+    println("--------------------------------")
+    println("Circles:")
+    for (circle <- circles) {
+      circle.print()
+    }
+    println("--------------------------------")
+    println("Triangles:")
+    for (triangle <- triangles)
+      triangle.print()
+    println("--------------------------------")
+    println("Ellipse:")
+    for (ellipse <- ellipses)
+      ellipse.print()
+    println("--------------------------------")
+  }
+
   val drawPointButton = new Button("◾")
   private var pCount: Int = 0
   drawPointButton.onAction = _ => {
@@ -148,7 +182,7 @@ object MenuBar {
     pCount = 0
   }
 
-  buttonPane.children = List(drawPointButton, drawSegmentLineButton,
+  buttonPane.children = List(printInfoButton, drawPointButton, drawSegmentLineButton,
     drawLineButton, drawCircleButton, drawTriangleButton, drawEllipseButton, cleanAllPlate)
 
   private def emptyLists(): Unit = {

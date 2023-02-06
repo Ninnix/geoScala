@@ -6,6 +6,10 @@ import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.Polygon
 
 class GeoTriangle(var a: GeoPoint, var b: GeoPoint, var c: GeoPoint):
+  
+  val ab : GeoSegmentLine = GeoSegmentLine(a, b)
+  val bc : GeoSegmentLine = GeoSegmentLine(b, c)
+  val ca : GeoSegmentLine = GeoSegmentLine(c, a)
 
   def print(): Unit = println("v1=" + a.getString() + " v2=" + b.getString() + " v3=" + c.getString())
 
