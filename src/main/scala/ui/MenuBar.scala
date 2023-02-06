@@ -8,10 +8,12 @@ import scalafx.scene.shape.{Circle, Line}
 import scalafx.scene.control.TextInputDialog
 import scalafx.scene.shape.Line
 import scalafx.Includes.*
+
 import scala.util.control.Breaks.break
 import ui.CartesianPlane.{grid, plane, xAxis, yAxis}
 import classes.{GeoCircle, GeoEllipse, GeoPoint, GeoSegmentLine, GeoStraightLine, GeoTriangle}
 import GeoConfig.{menuBarSize, stageSize}
+import scalafx.scene.input.MouseEvent
 
 object MenuBar {
   val buttonPane = new VBox
@@ -26,6 +28,27 @@ object MenuBar {
   var circles: List[GeoCircle] = List()
   var triangles: List[GeoTriangle] = List()
   var ellipses: List[GeoEllipse] = List()
+
+  var selectedPoints: List[GeoPoint] = List() //.take(2)
+
+
+  val selectPointsButton = new Button("Select Element")
+  selectPointsButton.onAction = _ => {
+    plane.onMouseClicked = (e: MouseEvent) => {
+      val x = e.x
+      val y = e.y
+      var xy: GeoPoint = GeoPoint(x, y)
+
+      val hitboxRange = 10
+      points.foreach(p => {
+        if (p.geoX >= x - hitboxRange && p.geoX <= x + hitboxRange && p.geoY >= y - hitboxRange && p.geoY <= y + hitboxRange) {
+          p.print()
+        }
+      })
+
+    }
+  }
+
 
 
   val printInfoButton = new Button("\uD83D\uDDB6")
@@ -69,18 +92,19 @@ object MenuBar {
       plane.children += objPoint.show("P" + pCount)
       objPoint.print()
       points = points :+ objPoint
+      selectedPoints = selectedPoints :+ objPoint
       pCount += 1
     }
   }
 
   val drawSegmentLineButton = new Button("➖")
   drawSegmentLineButton.onAction = _ => {
-    if (points.length >= 2) {
-      val p1 = points(0)
-      val p2 = points(1)
+    if (selectedPoints.length >= 2) {
+      val p1 = selectedPoints(0)
+      val p2 = selectedPoints(1)
       val segment = new GeoSegmentLine(p1, p2)
       plane.children += segment.show()
-      points = List()
+      selectedPoints = List()
       segments = segments :+ segment
       segment.print()
     }

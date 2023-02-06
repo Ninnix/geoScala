@@ -13,6 +13,20 @@ class GeoSegmentLine(val a: GeoPoint, val b: GeoPoint):
     val y0: Double = Math.abs(a.geoY - b.geoY)
     Math.sqrt((x0*x0)+(y0*y0))
 
+  def containsPoint(p: GeoPoint): Boolean = {
+    val slope = (b.geoY - a.geoY) / (b.geoX - b.geoX)
+    val yIntercept = b.geoY - slope * b.geoX
+
+    if (p.geoX >= a.geoX && p.geoX <= b.geoX) {
+      val lineY = slope * p.geoX + yIntercept
+      if (lineY == p.geoY) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   def midpoint(): GeoPoint =
     val xm: Double = (this.a.geoX + this.b.geoX)/2
     val ym: Double = (this.a.geoY + this.b.geoY)/2
